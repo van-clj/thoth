@@ -30,4 +30,4 @@
    {:_id "counter"} ;; find the counter record.
    {:$inc {:value 1} } ;; Increment it.
    :return-new true :upsert? true)] ;; Insert if not there.
-    ([:p (str "Welcome to noir-heroku, you're visitor " (or (:value counter) 0))])))
+    (response/json {:shortened_url "yei"})))
