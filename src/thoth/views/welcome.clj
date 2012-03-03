@@ -1,6 +1,5 @@
 (ns thoth.views.welcome
-  (:require [thoth.views.common :as common]
-            [noir.content.pages :as pages])
+  (:require [thoth.views.common :as common])
   (use noir.core
        hiccup.core
        hiccup.page-helpers)
@@ -32,5 +31,4 @@
    {:_id "counter"} ;; find the counter record.
    {:$inc {:value 1} } ;; Increment it.
    :return-new true :upsert? true)] ;; Insert if not there.
-    (common/layout
-     [:p (str "Welcome to noir-heroku, you're visitor " (or (:value counter) 0))])))
+    ([:p (str "Welcome to noir-heroku, you're visitor " (or (:value counter) 0))])))
