@@ -1,5 +1,4 @@
 (ns thoth.views.welcome
-  (:require [thoth.views.common :as common])
   (use noir.core
        hiccup.core
        hiccup.page-helpers)
