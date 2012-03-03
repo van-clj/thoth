@@ -2,6 +2,7 @@
   (use noir.core
        hiccup.core
        hiccup.page-helpers)
+  (require [noir.response :as response])
   (:use somnium.congomongo)
   (:use [somnium.congomongo.config :only [*mongo-config*]]))
 
@@ -30,4 +31,4 @@
    {:_id "counter"} ;; find the counter record.
    {:$inc {:value 1} } ;; Increment it.
    :return-new true :upsert? true)] ;; Insert if not there.
-    (response/json {:shortened_url "yei"})))
+    (response/json {:shortened_url (:value counter)})))
