@@ -7,7 +7,6 @@
 
 (check-for-test-env!)
 
-
 (deftest shortify-with-no-auth
   (with-test-mongo
     (-> (send-request [:post "/shortify"])
