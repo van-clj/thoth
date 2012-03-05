@@ -1,6 +1,8 @@
 (ns thoth.server
+  (:require [thoth.middlewares :as middlewares])
   (:require [noir.server :as server]))
 
+(server/add-middleware middlewares/auth-required)
 (server/load-views "src/thoth/views/")
 
 (defn -main [& m]
