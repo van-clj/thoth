@@ -67,7 +67,7 @@ be as simple as (assuming you have heroku alredy configured):
 4. git push heroku master
 5. heroku addons:add mongohq:free
 6. heroku config:add APP_ENV=production
-7. git push heroku master
+
 
 
 ## License
