@@ -1,6 +1,6 @@
 # thoth [![Build Status](https://secure.travis-ci.org/van-clj/thoth.png)](https://secure.travis-ci.org/van-clj/thoth.png)
 
-A simple URL shortner using written in clojure and built on top of noir and mongodb.
+A simple URL shortner written in clojure and built on top of noir and mongodb.
 
 The URLs are shortened using a base62 strings as ids.
 
