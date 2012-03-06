@@ -42,9 +42,11 @@ Example with cURL:
 ```
 
 The response should be a json like these:
+
 ```json
 {"shortened_url":"1lQ","url":"http://www.google.com"}
 ```
+
 Where shortened_url is the shortened id.
 
 ### Retrieving an URL. 
