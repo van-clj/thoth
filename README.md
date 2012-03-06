@@ -51,6 +51,7 @@ Where shortened_url is the shortened id.
 
 Then you just need to do a GET  request to your shortener with that id and it
 should redirect to the original url:
+
 ```bash
  curl -i http://myshort.cl/1lQ
 ```
