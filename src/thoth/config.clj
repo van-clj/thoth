@@ -15,7 +15,7 @@
     (cond 
       production? heroku-mongo
       development? "mongodb://thoth:thoth@localhost:27017/thoth"
-      test? "mongodb://thoth:thoth@localhost:27017/test"
+      test? "mongodb://thoth:thoth@127.0.0.1:27017/test"
       :else ((println "You must set APP_ENV environment variable to production, development or test")
              (System/exit 1)))))
 
