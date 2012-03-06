@@ -1,4 +1,3 @@
 language: clojure
-env: APP_ENV=test
 before_script:
   - mongo test --eval 'db.addUser("thoth", "thoth");'
