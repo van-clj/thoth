@@ -14,12 +14,20 @@
   (with-mongo mongo-conn
     (insert! :shortenedurls {:_id shortened
                              :url url})))
-(defn get-url-from-id [_id] 
-  (with-mongo mongo-conn 
-    (:url (fetch-by-id :shortenedurls _id))))
+(defn get-url-from-id-and-incr [_id]
+  (with-mongo mongo-conn
+    (:url (fetch-and-modify
+        :shortenedurls ;; In the collection named 'ids-pool',
+        {:_id _id} ;; find the current record.
+        {:$inc {:count 1} } ;; Increment it.
+        :return-new true :upsert? true))))
 
-(defn get-record-from-url [raw-url] 
-  (with-mongo mongo-conn 
+(defn get-record-from-id [_id]
+  (with-mongo mongo-conn
+    (fetch-by-id :shortenedurls _id)))
+
+(defn get-record-from-url [raw-url]
+  (with-mongo mongo-conn
     (let [url (add-http-if-needed raw-url)]
       (first (fetch :shortenedurls :where {:url url})))))
 
@@ -31,8 +39,8 @@
         {:_id "current"} ;; find the current record.
         {:$inc {:value 1} } ;; Increment it.
         :return-new true :upsert? true)]
-      (cond 
-        (nil? (:value counter)) "0" ;; Base case 
+      (cond
+        (nil? (:value counter)) "0" ;; Base case
         :else (base62/int-to-base62 (:value counter))))))
 
 (defn create-url [raw-url]
