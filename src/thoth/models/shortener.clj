@@ -20,7 +20,7 @@
         :shortenedurls ;; In the collection named 'ids-pool',
         {:_id _id} ;; find the current record.
         {:$inc {:count 1} } ;; Increment it.
-        :return-new true :upsert? true))))
+        :return-new true :upsert? false))))
 
 (defn get-record-from-id [_id]
   (with-mongo mongo-conn

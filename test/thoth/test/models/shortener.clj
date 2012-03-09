@@ -69,6 +69,14 @@
     (get-url-from-id-and-incr "1")
     (is (= (:count (get-record-from-id "1")) 2))))
 
+;; This test is because of a small bug I found when incremeting the count.
+;; If an id is not in the database, it shouldn't add any new records.
+(deftest get-url-from-id-and-incr-doesnt-create-records
+  (with-test-mongo
+    (is (= (get-url-from-id-and-incr "1") nil))
+    (is (= (:_id (get-record-from-id "1")) nil))))
+
+
 
 
 (deftest get-record-from-url-tests
