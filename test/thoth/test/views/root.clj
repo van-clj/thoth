@@ -1,4 +1,4 @@
-(ns thoth.test.views.get
+(ns thoth.test.views.root
   (:use [thoth.config :only (check-for-test-env!)])
   (:use thoth.views.root)
   (:use noir.util.test)
