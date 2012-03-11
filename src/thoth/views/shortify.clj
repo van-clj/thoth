@@ -9,7 +9,7 @@
     (not (= (:auth-token config) auth))
       (response/status 401 "You need a valid auth token to access this resource.")
     (not (nil? url))
-      (let [shortened-url (shortener/get-or-create-url url)]
+      (let [shortened-url (shortener/get-or-create-url! url)]
         (response/json {:shortened_url (:_id shortened-url)
                     :url (:url shortened-url)}))
     :else

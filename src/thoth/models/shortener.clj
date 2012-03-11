@@ -10,11 +10,11 @@
     (not (nil? (re-find #"^http://" url))) url
     :else (str "http://" url)))
 
-(defn insert-to-mongo [shortened url]
+(defn insert-to-mongo! [shortened url]
   (with-mongo mongo-conn
     (insert! :shortenedurls {:_id shortened
                              :url url})))
-(defn get-url-from-id-and-incr [_id]
+(defn get-url-from-id-and-incr! [_id]
   (with-mongo mongo-conn
     (:url (fetch-and-modify
         :shortenedurls ;; In the collection named 'ids-pool',
@@ -31,7 +31,7 @@
     (let [url (add-http-if-needed raw-url)]
       (first (fetch :shortenedurls :where {:url url})))))
 
-(defn generate-shortened-url []
+(defn generate-shortened-url! []
   (with-mongo mongo-conn
     (let [counter
       (fetch-and-modify
@@ -43,11 +43,11 @@
         (nil? (:value counter)) "0" ;; Base case
         :else (base62/int-to-base62 (:value counter))))))
 
-(defn create-url [raw-url]
+(defn create-url! [raw-url]
   (let [url (add-http-if-needed raw-url)]
-    (insert-to-mongo (generate-shortened-url) url)))
+    (insert-to-mongo! (generate-shortened-url!) url)))
 
-(defn get-or-create-url [raw-url]
+(defn get-or-create-url! [raw-url]
   (let [existent-url (get-record-from-url raw-url)]
     (cond (not (nil? existent-url)) existent-url
-     :else (create-url raw-url))))
+     :else (create-url! raw-url))))

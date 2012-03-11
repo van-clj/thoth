@@ -4,7 +4,7 @@
   (:use noir.core))
 
 (defpage "/:url" {url-id :url} 
-  (let [original-url (shortener/get-url-from-id-and-incr url-id)]
+  (let [original-url (shortener/get-url-from-id-and-incr! url-id)]
   (cond 
     (not (nil? original-url))
         (response/redirect original-url)
