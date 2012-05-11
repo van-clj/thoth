@@ -38,7 +38,7 @@ parameters:
 Example with cURL:
 
 ```bash
- curl -i http://myshort.cl/shortify -X url="www.google.com" -X auth="12345678"
+ curl -i http://myshort.cl/shortify -F url="www.google.com" -F auth=12345678
 ```
 
 The response should be a json like these:
